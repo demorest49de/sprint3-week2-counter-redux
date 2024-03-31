@@ -1,0 +1,10 @@
+.counter {
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  column-gap: 200px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  min-width: 340px;
+}
