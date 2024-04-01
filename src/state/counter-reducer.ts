@@ -3,7 +3,13 @@ import {CounterParamsType} from "../Components/Counter/Counter";
 export type ChangeMaxValue =
     ReturnType<typeof ChangeMaxValueAC>
 
-type ActionType = ChangeMaxValue;
+export type ChangeStartValue =
+    ReturnType<typeof ChangeStartValueAC>
+
+type ActionType =
+    ChangeMaxValue
+    | ChangeStartValue
+    ;
 
 
 const initialState: CounterParamsType = {
@@ -14,7 +20,7 @@ const initialState: CounterParamsType = {
     incState: true,
     resetState: true,
     setState: false,
-    inputState: false,
+    disabledState: false,
     turnRed: false,
     start: {
         name: 'start',
@@ -35,7 +41,15 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
         case 'CHANGE-MAX-VALUE': {
             const hasError = +action.value < 0
             const nstate = {...state}
-            nstate.max = {...nstate.max, inputValue: action.value, }
+            nstate.max = {...nstate.max, inputValue: action.value, hasError }
+            nstate.bothError = (+action.value <= +nstate.start.inputValue);
+            return nstate;
+        }
+        case 'CHANGE-START-VALUE': {
+            const hasError = +action.value < 0
+            const nstate = {...state}
+            nstate.start = {...nstate.start, inputValue: action.value, hasError }
+            nstate.bothError = (+action.value >= +nstate.max.inputValue);
             return nstate;
         }
         default: {
@@ -46,4 +60,8 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
 
 export const ChangeMaxValueAC = (value: string) => {
     return {type: 'CHANGE-MAX-VALUE', value} as const
+}
+
+export const ChangeStartValueAC = (value: string) => {
+    return {type: 'CHANGE-START-VALUE', value} as const
 }

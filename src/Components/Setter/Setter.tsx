@@ -8,19 +8,21 @@ import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
 import {CounterParamsType} from "../Counter/Counter";
 
 type SetterType = {
-    // getSetterInputParameters: (maxValue: string, startValue: string, hasAnyError: boolean, isButtonPressed: boolean) => void
-    // hasAnyErrorsHandler: (hasError: boolean) => void
+    // // hasAnyErrorsHandler: (hasError: boolean) => void
     cp: CounterParamsType
-    seCounterParams: (value: CounterParamsType) => void
-    // setButton: boolean
-    // inputState: boolean
+    // // setButton: boolean
+    // // inputState: boolean
+    changeMaxValue: (value: string) => void
+    changeStartValue: (value: string) => void
 }
 
 export const Setter = ({
+                           changeMaxValue,
+                           changeStartValue,
+                           cp,
                            // getSetterInputParameters,
                            // hasAnyErrorsHandler
-                           cp,
-                           seCounterParams,
+                           // seCounterParams,
                            // setButton,
                            // inputState,
                        }: SetterType) => {
@@ -35,23 +37,23 @@ export const Setter = ({
                         hasToBeMargin={true}
                         inputFieldSet={false}
                     >
-                        {/*<Input*/}
-                        {/*    name={cp.max.name}*/}
-                        {/*    inputValue={cp.max.inputValue}*/}
-                        {/*    hasError={cp.max.hasError}*/}
-                        {/*    focus={cp.max.focus}*/}
-                        {/*    onChangeMax={onChangeMax}*/}
-                        {/*    bothError={bothError}*/}
-                        {/*    inputState={inputState}*/}
-                        {/*/>*/}
-                        {/*<Input*/}
-                        {/*    name={start.name}*/}
-                        {/*    inputValue={start.inputValue}*/}
-                        {/*    hasError={start.hasError}*/}
-                        {/*    onChangeStart={onChangeStart}*/}
-                        {/*    bothError={bothError}*/}
-                        {/*    inputState={inputState}*/}
-                        {/*/>*/}
+                        <Input
+                            name={'max'}
+                            inputValue={cp.max.inputValue}
+                            hasError={cp.max.hasError}
+                            focus={cp.max.focus}
+                            onChangeMax={changeMaxValue}
+                            bothError={cp.bothError}
+                            disabledState={cp.disabledState}
+                        />
+                        <Input
+                            name={'start'}
+                            inputValue={cp.start.inputValue}
+                            hasError={cp.start.hasError}
+                            onChangeStart={changeStartValue}
+                            bothError={cp.bothError}
+                            disabledState={cp.disabledState}
+                        />
                     </FieldSet>
                     <FieldSet gradient={secondGradient}
                               buttonFieldSet={true}

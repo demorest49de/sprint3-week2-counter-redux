@@ -2,8 +2,8 @@ import React, {useReducer, useState} from 'react';
 import s from './Counter.module.css'
 import {Incrementer} from "../Incrementer/Incrementer";
 import {Setter} from "../Setter/Setter";
-import {ChangeMaxValueAC, counterReducer} from "../../state/counter-reducer";
-import {useSelector} from "react-redux";
+import {ChangeMaxValueAC, ChangeStartValueAC, counterReducer} from "../../state/counter-reducer";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
 
 
@@ -15,7 +15,7 @@ export type CounterParamsType = {
     incState: boolean
     resetState: boolean
     setState: boolean
-    inputState: boolean
+    disabledState: boolean
     turnRed: boolean
     start: StartValueType
     max: MaxValueType
@@ -39,8 +39,9 @@ export const Counter = () => {
 
     const counterParams
         = useSelector<AppRootStateType, CounterParamsType>(
-            state => state.counter)
-
+        state => state.counter)
+    const dispatch = useDispatch();
+    console.log(' counterParams: ', counterParams);
 
     // function getSetterParameters(maxValue: string, startValue: string, hasAnyError: boolean, setIsPressed: boolean) {
     //     setCounterParams({
@@ -59,7 +60,7 @@ export const Counter = () => {
     // function hasAnyErrorsHandler(hasAnyError: boolean) {
     //     seCounterParams({...counterParams, hasAnyError})
     // }
-    //
+
     // function isIncButtonPressedHandler(isPressed: boolean) {
     //     const inc = (+counterParams.startValue + 1).toString()
     //     if (+inc <= +counterParams.maxValue) {
@@ -70,7 +71,7 @@ export const Counter = () => {
     //         setTurnRed(true)
     //     }
     // }
-    //
+
     // function isResetButtonPressedHandler(isPressed: boolean) {
     //     setSetState(false)
     //     setResetState(true)
@@ -79,24 +80,22 @@ export const Counter = () => {
     //     seCounterParams({...counterParams, maxValue: '2', startValue: '0', hasAnyError: false, setIsPressed: false})
     //     setTurnRed(false)
     // }
-    //
-    // function onChangeStart(value: string) {
-    //     const hasError = +value < 0
-    //     setStart({...start, hasError: hasError, inputValue: value})
-    //     setBothError(+value >= +max.inputValue)
-    //
-    //     hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
-    // }
-    //
-    // //setter
 
     function changeMaxValue(value: string) {
         const action = ChangeMaxValueAC(value)
+        dispatch(action)
 
-        // setMax({...max, hasError: hasError, inputValue: value})
-        // setBothError(+value <= +start.inputValue)
-        //
         // hasAnyErrorsHandler(hasError || +value <= +start.inputValue)
+    }
+
+    function changeStartValue(value: string) {
+        const action = ChangeStartValueAC(value)
+        dispatch(action)
+        // const hasError = +value < 0
+        // setStart({...start, hasError: hasError, inputValue: value})
+        // setBothError(+value >= +max.inputValue)
+        //
+        // hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
     }
 
     //
@@ -109,15 +108,17 @@ export const Counter = () => {
     return (
         <div className={s.counter}>
 
-            {/*<Setter*/}
-            {/*    // getSetterInputParameters={getSetterParameters}*/}
-            {/*    // hasAnyErrorsHandler={hasAnyErrorsHandler}*/}
-            {/*    cp={counterParams}*/}
-            {/*    seCounterParams={setCounterParams}*/}
-            {/*    // setButton={setState}*/}
-            {/*    // inputState={inputState}*/}
+            <Setter
+                changeMaxValue={changeMaxValue}
+                changeStartValue={changeStartValue}
+                cp={counterParams}
+                // getSetterInputParameters={getSetterParameters}
+                // hasAnyErrorsHandler={hasAnyErrorsHandler}
+                // seCounterParams={setCounterParams}
+                // setButton={setState}
+                // inputState={inputState}
+            />
 
-            {/*/>*/}
             {/*<Incrementer*/}
             {/*    params={counterParams}*/}
             {/*    incButton={incState}*/}

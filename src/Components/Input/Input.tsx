@@ -9,7 +9,7 @@ type CustomInputType = {
     onChangeStart?: (value: string) => void
     onChangeMax?: (value: string) => void
     bothError: boolean
-    inputState: boolean
+    disabledState: boolean
 }
 
 export const Input = ({
@@ -20,7 +20,7 @@ export const Input = ({
                           onChangeStart,
                           onChangeMax,
                           bothError,
-                          inputState
+                          disabledState
                       }: CustomInputType) => {
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ export const Input = ({
                value={inputValue}
                autoFocus={focus}
                onChange={onChangeHandler}
-               disabled={inputState}
+               disabled={disabledState}
         />
     </InputStyled>
 }
