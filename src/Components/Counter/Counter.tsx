@@ -13,8 +13,6 @@ import {AppRootStateType} from "../../state/store";
 
 
 export type CounterParamsType = {
-    maxValue: string
-    startValue: string
 
     hasErrorGlobal: boolean
     setButtonDisabled: boolean

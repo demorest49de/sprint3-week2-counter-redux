@@ -1,17 +1,17 @@
 import styled, {css} from "styled-components";
 
 type SpanStyledType = {
-    isErrorText?: boolean
-    isText?: boolean
-    turnRed?: boolean
+    isNumber: boolean
+    isErrorText: boolean
+    turnRed: boolean
 }
 
 export const SpanStyled
     = styled.span<SpanStyledType>`
   color: #6fe3ee;
-  font-size: 65px;
-  ${props => props.isText && css<SpanStyledType>`
-    font-size: 25px;
+  font-size: 25px;
+  ${props => props.isNumber && css<SpanStyledType>`
+    font-size: 65px;
   `}
   ${props => props.isErrorText && css<SpanStyledType>`
     font-size: 25px;

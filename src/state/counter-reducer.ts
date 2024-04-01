@@ -21,9 +21,7 @@ type ActionType =
 
 
 const initialState: CounterParamsType = {
-    maxValue: '',
-    startValue: '',
-    
+
     hasErrorGlobal: false,
 
     setButtonDisabled: false,
@@ -70,11 +68,11 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
         case 'INCREMENT-BUTTON-PRESSED': {
             const nstate = {...state}
 
-            const inc = (+nstate.startValue + 1)
-            if (inc <= +nstate.maxValue) {
-                nstate.startValue = inc.toString()
+            const inc = (+nstate.start.inputValue + 1)
+            if (inc <= +nstate.max.inputValue) {
+                nstate.start.inputValue = inc.toString()
             }
-            if (inc === +nstate.maxValue) {
+            if (inc === +nstate.max.inputValue) {
                 nstate.incButtonDisabled = true
                 nstate.turnRed = true
             }

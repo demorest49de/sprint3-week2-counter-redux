@@ -29,15 +29,17 @@ export const Incrementer = ({
                           hasToBeMargin={true}
                 >
                     <SpanStyled
-                        isText={!cp.setButtonDisabled}
+                        isNumber={cp.setButtonDisabled}
                         isErrorText={cp.hasErrorGlobal}
                         turnRed={cp.turnRed}
                     >
                         {cp.setButtonDisabled ?
-                            cp.startValue :
-                            cp.hasErrorGlobal ?
+                            cp.start.inputValue :
+                            (cp.hasErrorGlobal ?
                                 'Incorrect value!' :
-                                'enter values and press \'set\''}</SpanStyled>
+                                'enter values and press \'set\'')
+                        }
+                    </SpanStyled>
                 </FieldSet>
                 <FieldSet gradient={firstGradient}
                           buttonFieldSet={true}
