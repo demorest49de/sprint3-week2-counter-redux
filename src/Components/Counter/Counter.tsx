@@ -1,11 +1,12 @@
-import React, {useReducer, useState} from 'react';
+import React from 'react';
 import s from './Counter.module.css'
 import {Incrementer} from "../Incrementer/Incrementer";
 import {Setter} from "../Setter/Setter";
 import {
     ChangeMaxValueAC,
     ChangeStartValueAC,
-    IncrementButtonIsPressedAC, SetButtonIsPressedAC
+    IncrementButtonIsPressedAC,
+    SetButtonIsPressedAC
 } from "../../state/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";

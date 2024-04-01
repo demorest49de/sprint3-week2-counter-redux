@@ -8,7 +8,6 @@ type CustomInputType = {
     focus?: boolean
     onChangeStart?: (value: string) => void
     onChangeMax?: (value: string) => void
-    // bothError: boolean
     disabledState: boolean
 }
 
