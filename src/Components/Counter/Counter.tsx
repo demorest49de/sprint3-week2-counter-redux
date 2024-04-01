@@ -16,7 +16,7 @@ export type CounterParamsType = {
     maxValue: string
     startValue: string
 
-    hasError: boolean
+    hasErrorGlobal: boolean
     setButtonDisabled: boolean
     incButtonDisabled: boolean
     resetButtonDisabled: boolean
@@ -78,7 +78,7 @@ export const Counter = () => {
         dispatch(action)
     }
 
-    function SetButtonHandler() {
+    function setButtonHandler() {
         const action = SetButtonIsPressedAC()
         dispatch(action)
     }
@@ -90,6 +90,7 @@ export const Counter = () => {
                 changeMaxValue={changeMaxValue}
                 changeStartValue={changeStartValue}
                 cp={counterParams}
+                setButtonHandler={setButtonHandler}
                 // hasAnyErrorsHandler={hasAnyErrorsHandler}
                 // seCounterParams={setCounterParams}
                 // setButton={setState}

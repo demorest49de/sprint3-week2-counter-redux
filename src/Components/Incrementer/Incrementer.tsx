@@ -32,12 +32,12 @@ export const Incrementer = ({
                 >
                     <SpanStyled
                         isText={!cp.setButtonDisabled}
-                        isErrorText={cp.hasError}
+                        isErrorText={cp.hasErrorGlobal}
                         turnRed={turnRed}
                     >
                         {cp.setButtonDisabled ?
                             cp.startValue :
-                            cp.hasError ?
+                            cp.hasErrorGlobal ?
                                 'Incorrect value!' :
                                 'enter values and press \'set\''}</SpanStyled>
                 </FieldSet>

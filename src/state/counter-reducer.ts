@@ -24,7 +24,7 @@ const initialState: CounterParamsType = {
     maxValue: '',
     startValue: '',
     
-    hasError: false,
+    hasErrorGlobal: false,
 
     setButtonDisabled: false,
     incButtonDisabled: true,
@@ -53,6 +53,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
                 (+action.value < 0)
                 || (+nstate.start.inputValue < 0)
                 || (+action.value <= +nstate.start.inputValue)
+            nstate.hasErrorGlobal = hasError
             nstate.max = {...nstate.max, inputValue: action.value, hasError}
             nstate.start = {...nstate.start, hasError}
             return nstate;
@@ -62,6 +63,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             const hasError =
                 (+action.value < 0)
                 || (+action.value >= +nstate.max.inputValue)
+            nstate.hasErrorGlobal = hasError
             nstate.start = {...nstate.start, inputValue: action.value, hasError}
             nstate.max = {...nstate.max, hasError}
             return nstate;

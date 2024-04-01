@@ -8,23 +8,17 @@ import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
 import {CounterParamsType} from "../Counter/Counter";
 
 type SetterType = {
-    // // hasAnyErrorsHandler: (hasError: boolean) => void
     cp: CounterParamsType
-    // // setButton: boolean
-    // // inputState: boolean
     changeMaxValue: (value: string) => void
     changeStartValue: (value: string) => void
+    setButtonHandler: () => void
 }
 
 export const Setter = ({
                            changeMaxValue,
                            changeStartValue,
                            cp,
-                           // getSetterInputParameters,
-                           // hasAnyErrorsHandler
-                           // seCounterParams,
-                           // setButton,
-                           // inputState,
+    setButtonHandler,
                        }: SetterType) => {
 
         return (
@@ -58,9 +52,8 @@ export const Setter = ({
                     >
                         <Button
                             name={'set'}
-                            hasAnyInputErrors={false}
-                            // isSetButtonPressed={isSetButtonPressed}
-                            disabled={false}
+                            setButtonHandler={setButtonHandler}
+                            disabled={cp.hasErrorGlobal}
                         />
                     </FieldSet>
                 </GradientWrapperStyled>
