@@ -5,10 +5,10 @@ import {FieldSet} from "../FieldSet/FieldSet";
 import {firstGradient, secondGradient} from "../Gradient/GradientTypes";
 import {Button} from "../Button/Button";
 import {SpanStyled} from "./SpanStyled";
-import {SetterParamsType} from "../Counter/Counter";
+import {CounterParamsType} from "../Counter/Counter";
 
 type IncrementerType = {
-    params: SetterParamsType
+    params: CounterParamsType
     incButton: boolean
     resetButton: boolean
     isResetButtonPressedHandler: (isPressed: boolean) => void
