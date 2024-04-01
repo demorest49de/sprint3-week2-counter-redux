@@ -42,7 +42,6 @@ const initialState: CounterParamsType = {
         hasError: false,
         focus: true
     },
-    // bothError: false
 }
 
 export const counterReducer = (state: CounterParamsType = initialState, action: ActionType): CounterParamsType => {
@@ -85,7 +84,6 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
         case 'SET-BUTTON-PRESSED': {
             const nstate = {...state}
             nstate.setButtonDisabled = true
-            //getSetterParameters(max.inputValue, start.inputValue, hasAnyErrors, isPressed)
             return nstate;
         }
         default: {

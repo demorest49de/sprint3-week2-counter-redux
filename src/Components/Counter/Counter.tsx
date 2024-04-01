@@ -20,9 +20,11 @@ export type CounterParamsType = {
     setButtonDisabled: boolean
     incButtonDisabled: boolean
     resetButtonDisabled: boolean
+
     setState: boolean
     disabledState: boolean
     turnRed: boolean
+
     start: StartValueType
     max: MaxValueType
 }
@@ -91,10 +93,6 @@ export const Counter = () => {
                 changeStartValue={changeStartValue}
                 cp={counterParams}
                 setButtonHandler={setButtonHandler}
-                // hasAnyErrorsHandler={hasAnyErrorsHandler}
-                // seCounterParams={setCounterParams}
-                // setButton={setState}
-                // inputState={inputState}
             />
 
             <Incrementer
