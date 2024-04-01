@@ -2,7 +2,11 @@ import React, {useReducer, useState} from 'react';
 import s from './Counter.module.css'
 import {Incrementer} from "../Incrementer/Incrementer";
 import {Setter} from "../Setter/Setter";
-import {ChangeMaxValueAC, ChangeStartValueAC, counterReducer} from "../../state/counter-reducer";
+import {
+    ChangeMaxValueAC,
+    ChangeStartValueAC,
+    IncrementButtonIsPressedAC, SetButtonIsPressedAC
+} from "../../state/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
 
@@ -10,10 +14,11 @@ import {AppRootStateType} from "../../state/store";
 export type CounterParamsType = {
     maxValue: string
     startValue: string
+
     hasAnyError: boolean
-    setIsPressed: boolean
-    incState: boolean
-    resetState: boolean
+    setButtonisPressed: boolean
+    incButtonisPressed: boolean
+    resetButtonisPressed: boolean
     setState: boolean
     disabledState: boolean
     turnRed: boolean
@@ -23,13 +28,11 @@ export type CounterParamsType = {
 }
 
 type StartValueType = {
-    name: string
     inputValue: string
     hasError: boolean
 }
 
 type MaxValueType = {
-    name: string
     inputValue: string
     hasError: boolean
     focus: boolean
@@ -43,33 +46,8 @@ export const Counter = () => {
     const dispatch = useDispatch();
     console.log(' counterParams: ', counterParams);
 
-    // function getSetterParameters(maxValue: string, startValue: string, hasAnyError: boolean, setIsPressed: boolean) {
-    //     setCounterParams({
-    //         ...counterParams,
-    //         maxValue,
-    //         hasAnyError,
-    //         startValue,
-    //         setIsPressed,
-    //     })
-    //     // setSetState(true)
-    //     // setIncState(false)
-    //     // setResetState(false)
-    //     // setInputState(true)
-    // }
-
     // function hasAnyErrorsHandler(hasAnyError: boolean) {
     //     seCounterParams({...counterParams, hasAnyError})
-    // }
-
-    // function isIncButtonPressedHandler(isPressed: boolean) {
-    //     const inc = (+counterParams.startValue + 1).toString()
-    //     if (+inc <= +counterParams.maxValue) {
-    //         seCounterParams({...counterParams, startValue: inc})
-    //     }
-    //     if (+inc === +counterParams.maxValue) {
-    //         setIncState(true)
-    //         setTurnRed(true)
-    //     }
     // }
 
     // function isResetButtonPressedHandler(isPressed: boolean) {
@@ -95,12 +73,19 @@ export const Counter = () => {
         // hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
     }
 
+    function incrementButtonHandler() {
+        const action = IncrementButtonIsPressedAC()
+        dispatch(action)
+    }
+
+    function SetButtonHandler() {
+        const action = SetButtonIsPressedAC()
+        dispatch(action)
+    }
+
     //
     // let hasAnyErrors = start.hasError || max.hasError || bothError
-    //
-    // function isSetButtonPressed(isPressed: boolean) {
-    //     getSetterParameters(max.inputValue, start.inputValue, hasAnyErrors, isPressed)
-    // }
+
 
     return (
         <div className={s.counter}>
@@ -118,7 +103,7 @@ export const Counter = () => {
 
             <Incrementer
                 cp={counterParams}
-                // isIncButtonPressedHandler={isIncButtonPressedHandler}
+                incrementButtonHandler={incrementButtonHandler}
                 // isResetButtonPressedHandler={isResetButtonPressedHandler}
                 // turnRed={turnRed}
                 turnRed={false}
