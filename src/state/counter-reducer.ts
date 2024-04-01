@@ -29,7 +29,6 @@ const initialState: CounterParamsType = {
     resetButtonDisabled: true,
 
     inputIsDisabled: false,
-    turnRed: false,
     start: {
         inputValue: '0',
         hasError: false,
@@ -73,7 +72,6 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             }
             if (inc === +nstate.max.inputValue) {
                 nstate.incButtonDisabled = true
-                nstate.turnRed = true
             }
 
             return nstate;

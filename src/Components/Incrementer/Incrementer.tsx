@@ -31,7 +31,8 @@ export const Incrementer = ({
                     <SpanStyled
                         isNumber={cp.setButtonDisabled}
                         isErrorText={cp.hasErrorGlobal}
-                        turnRed={cp.turnRed}
+                        turnRed={cp.start.inputValue
+                            === cp.max.inputValue}
                     >
                         {cp.setButtonDisabled ?
                             cp.start.inputValue :

@@ -20,7 +20,6 @@ export type CounterParamsType = {
     resetButtonDisabled: boolean
 
     inputIsDisabled: boolean
-    turnRed: boolean
 
     start: StartValueType
     max: MaxValueType
