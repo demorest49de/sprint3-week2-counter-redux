@@ -13,63 +13,12 @@ type SetterType = {
     hasAnyErrorsHandler: (hasError: boolean) => void
 }
 
-type ValueType = {
-    name: string,
-    inputValue: string
-    hasError: boolean
-    focus?: boolean
-}
-
 export const Setter = ({
                            getSetterInputParameters,
                            setButton,
                            inputState,
                            hasAnyErrorsHandler
                        }: SetterType) => {
-
-        const [start, setStart]
-            = useState<ValueType>(
-            {
-                name: 'start',
-                inputValue: '0',
-                hasError: false,
-            }
-        )
-
-        const [max, setMax]
-            = useState<ValueType>(
-            {
-                name: 'max',
-                inputValue: '2',
-                hasError: false,
-                focus: true
-            }
-        )
-
-        const [bothError, setBothError]
-            = useState(false)
-
-        function onChangeStart(value: string) {
-            const hasError = +value < 0
-            setStart({...start, hasError: hasError, inputValue: value})
-            setBothError(+value >= +max.inputValue)
-
-            hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
-        }
-
-        function onChangeMax(value: string) {
-            const hasError = +value < 0
-            setMax({...max, hasError: hasError, inputValue: value})
-            setBothError(+value <= +start.inputValue)
-
-            hasAnyErrorsHandler(hasError || +value <= +start.inputValue)
-        }
-
-        let hasAnyErrors = start.hasError || max.hasError || bothError
-
-        function isSetButtonPressed(isPressed: boolean) {
-            getSetterInputParameters(max.inputValue, start.inputValue, hasAnyErrors, isPressed)
-        }
 
         return (
             <MainBlockStyled
