@@ -43,7 +43,6 @@ export const Setter = ({
                             hasError={cp.max.hasError}
                             focus={cp.max.focus}
                             onChangeMax={changeMaxValue}
-                            bothError={cp.bothError}
                             disabledState={cp.disabledState}
                         />
                         <Input
@@ -51,7 +50,6 @@ export const Setter = ({
                             inputValue={cp.start.inputValue}
                             hasError={cp.start.hasError}
                             onChangeStart={changeStartValue}
-                            bothError={cp.bothError}
                             disabledState={cp.disabledState}
                         />
                     </FieldSet>
@@ -60,7 +58,6 @@ export const Setter = ({
                     >
                         <Button
                             name={'set'}
-                            //TODO podumat kak sdelat bez etogo metoda
                             hasAnyInputErrors={false}
                             // isSetButtonPressed={isSetButtonPressed}
                             disabled={false}

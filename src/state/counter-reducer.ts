@@ -23,10 +23,13 @@ type ActionType =
 const initialState: CounterParamsType = {
     maxValue: '',
     startValue: '',
-    hasAnyError: false,
-    setButtonisPressed: false,
-    incButtonisPressed: true,
-    resetButtonisPressed: true,
+    
+    hasError: false,
+
+    setButtonDisabled: false,
+    incButtonDisabled: true,
+    resetButtonDisabled: true,
+
     setState: false,
     disabledState: false,
     turnRed: false,
@@ -39,23 +42,28 @@ const initialState: CounterParamsType = {
         hasError: false,
         focus: true
     },
-    bothError: false
+    // bothError: false
 }
 
 export const counterReducer = (state: CounterParamsType = initialState, action: ActionType): CounterParamsType => {
     switch (action.type) {
         case 'CHANGE-MAX-VALUE': {
-            const hasError = +action.value < 0
             const nstate = {...state}
+            const hasError =
+                (+action.value < 0)
+                || (+nstate.start.inputValue < 0)
+                || (+action.value <= +nstate.start.inputValue)
             nstate.max = {...nstate.max, inputValue: action.value, hasError}
-            nstate.bothError = (+action.value <= +nstate.start.inputValue);
+            nstate.start = {...nstate.start, hasError}
             return nstate;
         }
         case 'CHANGE-START-VALUE': {
-            const hasError = +action.value < 0
             const nstate = {...state}
+            const hasError =
+                (+action.value < 0)
+                || (+action.value >= +nstate.max.inputValue)
             nstate.start = {...nstate.start, inputValue: action.value, hasError}
-            nstate.bothError = (+action.value >= +nstate.max.inputValue);
+            nstate.max = {...nstate.max, hasError}
             return nstate;
         }
         case 'INCREMENT-BUTTON-PRESSED': {
@@ -66,7 +74,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
                 nstate.startValue = inc.toString()
             }
             if (inc === +nstate.maxValue) {
-                nstate.incButtonisPressed = true
+                nstate.incButtonDisabled = true
                 nstate.turnRed = true
             }
 
@@ -74,7 +82,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
         }
         case 'SET-BUTTON-PRESSED': {
             const nstate = {...state}
-            nstate.setButtonisPressed
+            nstate.setButtonDisabled = true
             //getSetterParameters(max.inputValue, start.inputValue, hasAnyErrors, isPressed)
             return nstate;
         }

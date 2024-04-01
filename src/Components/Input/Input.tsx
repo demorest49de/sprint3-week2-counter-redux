@@ -8,7 +8,7 @@ type CustomInputType = {
     focus?: boolean
     onChangeStart?: (value: string) => void
     onChangeMax?: (value: string) => void
-    bothError: boolean
+    // bothError: boolean
     disabledState: boolean
 }
 
@@ -19,7 +19,6 @@ export const Input = ({
                           focus,
                           onChangeStart,
                           onChangeMax,
-                          bothError,
                           disabledState
                       }: CustomInputType) => {
 
@@ -31,7 +30,6 @@ export const Input = ({
 
     return <InputStyled
         hasError={hasError}
-        bothError={bothError}
     >
         <label>{name} value:</label>
         <input type={'number'}
@@ -45,7 +43,6 @@ export const Input = ({
 
 type CustomInputStyledType = {
     hasError: boolean
-    bothError: boolean
 }
 
 const InputStyled
@@ -68,8 +65,9 @@ const InputStyled
     text-align: center;
     font-weight: inherit;
     border-radius: 10px;
-    ${props => (props.hasError || props.bothError) && css<CustomInputStyledType>`
-      background-color: rgba(245, 40, 145, 0.36);
-    `}
+    ${props => (props.hasError)
+      && css<CustomInputStyledType>`
+        background-color: rgba(245, 40, 145, 0.36);
+      `}
   }
 `

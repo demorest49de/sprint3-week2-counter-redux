@@ -15,16 +15,15 @@ export type CounterParamsType = {
     maxValue: string
     startValue: string
 
-    hasAnyError: boolean
-    setButtonisPressed: boolean
-    incButtonisPressed: boolean
-    resetButtonisPressed: boolean
+    hasError: boolean
+    setButtonDisabled: boolean
+    incButtonDisabled: boolean
+    resetButtonDisabled: boolean
     setState: boolean
     disabledState: boolean
     turnRed: boolean
     start: StartValueType
     max: MaxValueType
-    bothError: boolean
 }
 
 type StartValueType = {
@@ -83,10 +82,6 @@ export const Counter = () => {
         dispatch(action)
     }
 
-    //
-    // let hasAnyErrors = start.hasError || max.hasError || bothError
-
-
     return (
         <div className={s.counter}>
 
@@ -94,7 +89,6 @@ export const Counter = () => {
                 changeMaxValue={changeMaxValue}
                 changeStartValue={changeStartValue}
                 cp={counterParams}
-                // getSetterInputParameters={getSetterParameters}
                 // hasAnyErrorsHandler={hasAnyErrorsHandler}
                 // seCounterParams={setCounterParams}
                 // setButton={setState}
@@ -105,7 +99,6 @@ export const Counter = () => {
                 cp={counterParams}
                 incrementButtonHandler={incrementButtonHandler}
                 // isResetButtonPressedHandler={isResetButtonPressedHandler}
-                // turnRed={turnRed}
                 turnRed={false}
             />
         </div>

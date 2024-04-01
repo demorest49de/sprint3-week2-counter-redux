@@ -31,13 +31,13 @@ export const Incrementer = ({
                           hasToBeMargin={true}
                 >
                     <SpanStyled
-                        isText={!cp.setButtonisPressed}
-                        isErrorText={cp.hasAnyError}
+                        isText={!cp.setButtonDisabled}
+                        isErrorText={cp.hasError}
                         turnRed={turnRed}
                     >
-                        {cp.setButtonisPressed ?
+                        {cp.setButtonDisabled ?
                             cp.startValue :
-                            cp.hasAnyError ?
+                            cp.hasError ?
                                 'Incorrect value!' :
                                 'enter values and press \'set\''}</SpanStyled>
                 </FieldSet>
@@ -47,11 +47,11 @@ export const Incrementer = ({
                     <Button
                         name={'inc'}
                         incrementButtonHandler={incrementButtonHandler}
-                        disabled={cp.incButtonisPressed}/>
+                        disabled={cp.incButtonDisabled}/>
                     <Button
                         name={'reset'}
                         // isResetButtonPressed={isResetButtonPressed}
-                        disabled={cp.resetButtonisPressed}/>
+                        disabled={cp.resetButtonDisabled}/>
                 </FieldSet>
             </GradientWrapperStyled>
         </MainBlockStyled>
