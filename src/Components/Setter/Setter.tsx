@@ -58,13 +58,13 @@ export const Setter = ({
                     <FieldSet gradient={secondGradient}
                               buttonFieldSet={true}
                     >
-                        {/*<Button*/}
-                        {/*    name={'set'}*/}
-                        {/*    //TODO podumat kak sdelat bez etogo metoda*/}
-                        {/*    hasAnyInputErrors={hasAnyErrors}*/}
-                        {/*    isSetButtonPressed={isSetButtonPressed}*/}
-                        {/*    disabled={setButton}*/}
-                        {/*/>*/}
+                        <Button
+                            name={'set'}
+                            //TODO podumat kak sdelat bez etogo metoda
+                            hasAnyInputErrors={false}
+                            // isSetButtonPressed={isSetButtonPressed}
+                            disabled={false}
+                        />
                     </FieldSet>
                 </GradientWrapperStyled>
             </MainBlockStyled>

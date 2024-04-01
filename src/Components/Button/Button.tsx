@@ -7,7 +7,7 @@ type ButtonType = {
     isResetButtonPressed?: (isPressed: boolean) => void
     isIncButtonPressed?: (isPressed: boolean) => void
     hasAnyInputErrors?: boolean
-    disabled: boolean
+    disabled?: boolean
 }
 
 export const Button = ({
@@ -36,7 +36,8 @@ export const Button = ({
 
     return (
         <ButtonStyled
-            disabled={hasAnyInputErrors ? hasAnyInputErrors : disabled}
+            // disabled={hasAnyInputErrors ? hasAnyInputErrors : disabled}
+            disabled={false}
             onClick={onClickHandler}
         >
             {name}

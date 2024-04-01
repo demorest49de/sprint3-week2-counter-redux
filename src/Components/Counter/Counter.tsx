@@ -91,10 +91,7 @@ export const Counter = () => {
     function changeStartValue(value: string) {
         const action = ChangeStartValueAC(value)
         dispatch(action)
-        // const hasError = +value < 0
-        // setStart({...start, hasError: hasError, inputValue: value})
-        // setBothError(+value >= +max.inputValue)
-        //
+
         // hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
     }
 
@@ -119,14 +116,13 @@ export const Counter = () => {
                 // inputState={inputState}
             />
 
-            {/*<Incrementer*/}
-            {/*    params={counterParams}*/}
-            {/*    incButton={incState}*/}
-            {/*    resetButton={resetState}*/}
-            {/*    isIncButtonPressedHandler={isIncButtonPressedHandler}*/}
-            {/*    isResetButtonPressedHandler={isResetButtonPressedHandler}*/}
-            {/*    turnRed={turnRed}*/}
-            {/*/>*/}
+            <Incrementer
+                cp={counterParams}
+                // isIncButtonPressedHandler={isIncButtonPressedHandler}
+                // isResetButtonPressedHandler={isResetButtonPressedHandler}
+                // turnRed={turnRed}
+                turnRed={false}
+            />
         </div>
     );
 };

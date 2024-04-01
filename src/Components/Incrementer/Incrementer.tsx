@@ -8,30 +8,26 @@ import {SpanStyled} from "./SpanStyled";
 import {CounterParamsType} from "../Counter/Counter";
 
 type IncrementerType = {
-    params: CounterParamsType
-    incButton: boolean
-    resetButton: boolean
-    isResetButtonPressedHandler: (isPressed: boolean) => void
-    isIncButtonPressedHandler: (isPressed: boolean) => void
+    cp: CounterParamsType
+    // isResetButtonPressedHandler: (isPressed: boolean) => void
+    // isIncButtonPressedHandler: (isPressed: boolean) => void
     turnRed?: boolean
 }
 
 export const Incrementer = ({
-                                params,
-                                incButton,
-                                resetButton,
-                                isResetButtonPressedHandler,
-                                isIncButtonPressedHandler,
+                                cp,
+                                // isResetButtonPressedHandler,
+                                // isIncButtonPressedHandler,
                                 turnRed
                             }: IncrementerType) => {
 
-    function isResetButtonPressed(isPressed: boolean) {
-        isResetButtonPressedHandler(isPressed);
-    }
-
-    function isIncButtonPressed(isPressed: boolean) {
-        isIncButtonPressedHandler(isPressed);
-    }
+    // function isResetButtonPressed(isPressed: boolean) {
+    //     isResetButtonPressedHandler(isPressed);
+    // }
+    //
+    // function isIncButtonPressed(isPressed: boolean) {
+    //     isIncButtonPressedHandler(isPressed);
+    // }
 
 
     return (
@@ -44,13 +40,13 @@ export const Incrementer = ({
                           hasToBeMargin={true}
                 >
                     <SpanStyled
-                        isText={!params.setIsPressed}
-                        isErrorText={params.hasAnyError}
+                        isText={!cp.setIsPressed}
+                        isErrorText={cp.hasAnyError}
                         turnRed={turnRed}
                     >
-                        {params.setIsPressed ?
-                            params.startValue :
-                            params.hasAnyError ?
+                        {cp.setIsPressed ?
+                            cp.startValue :
+                            cp.hasAnyError ?
                                 'Incorrect value!' :
                                 'enter values and press \'set\''}</SpanStyled>
                 </FieldSet>
@@ -59,12 +55,12 @@ export const Incrementer = ({
                 >
                     <Button
                         name={'inc'}
-                        isIncButtonPressed={isIncButtonPressed}
-                        disabled={incButton}/>
+                        // isIncButtonPressed={isIncButtonPressed}
+                        disabled={cp.incState}/>
                     <Button
                         name={'reset'}
-                        isResetButtonPressed={isResetButtonPressed}
-                        disabled={resetButton}/>
+                        // isResetButtonPressed={isResetButtonPressed}
+                        disabled={cp.resetState}/>
                 </FieldSet>
             </GradientWrapperStyled>
         </MainBlockStyled>
