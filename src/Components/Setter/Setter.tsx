@@ -37,14 +37,14 @@ export const Setter = ({
                             hasError={cp.max.hasError}
                             focus={cp.max.focus}
                             onChangeMax={changeMaxValue}
-                            disabledState={cp.disabledState}
+                            disabledState={cp.inputIsDisabled}
                         />
                         <Input
                             name={'start'}
                             inputValue={cp.start.inputValue}
                             hasError={cp.start.hasError}
                             onChangeStart={changeStartValue}
-                            disabledState={cp.disabledState}
+                            disabledState={cp.inputIsDisabled}
                         />
                     </FieldSet>
                     <FieldSet gradient={secondGradient}
@@ -53,7 +53,7 @@ export const Setter = ({
                         <Button
                             name={'set'}
                             setButtonHandler={setButtonHandler}
-                            disabled={cp.hasErrorGlobal}
+                            disabled={cp.hasErrorGlobal || cp.setButtonDisabled}
                         />
                     </FieldSet>
                 </GradientWrapperStyled>

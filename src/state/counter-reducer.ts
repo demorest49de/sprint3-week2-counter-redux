@@ -31,7 +31,7 @@ const initialState: CounterParamsType = {
     resetButtonDisabled: true,
 
     setState: false,
-    disabledState: false,
+    inputIsDisabled: false,
     turnRed: false,
     start: {
         inputValue: '0',
@@ -84,6 +84,9 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
         case 'SET-BUTTON-PRESSED': {
             const nstate = {...state}
             nstate.setButtonDisabled = true
+            nstate.inputIsDisabled = true
+            nstate.incButtonDisabled = false
+            nstate.resetButtonDisabled = false
             return nstate;
         }
         default: {

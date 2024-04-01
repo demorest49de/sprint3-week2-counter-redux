@@ -22,7 +22,7 @@ export type CounterParamsType = {
     resetButtonDisabled: boolean
 
     setState: boolean
-    disabledState: boolean
+    inputIsDisabled: boolean
     turnRed: boolean
 
     start: StartValueType
@@ -48,9 +48,20 @@ export const Counter = () => {
     const dispatch = useDispatch();
     console.log(' counterParams: ', counterParams);
 
-    // function hasAnyErrorsHandler(hasAnyError: boolean) {
-    //     seCounterParams({...counterParams, hasAnyError})
-    // }
+    function changeMaxValue(value: string) {
+        const action = ChangeMaxValueAC(value)
+        dispatch(action)
+    }
+
+    function changeStartValue(value: string) {
+        const action = ChangeStartValueAC(value)
+        dispatch(action)
+    }
+
+    function incrementButtonHandler() {
+        const action = IncrementButtonIsPressedAC()
+        dispatch(action)
+    }
 
     // function isResetButtonPressedHandler(isPressed: boolean) {
     //     setSetState(false)
@@ -60,25 +71,6 @@ export const Counter = () => {
     //     seCounterParams({...counterParams, maxValue: '2', startValue: '0', hasAnyError: false, setIsPressed: false})
     //     setTurnRed(false)
     // }
-
-    function changeMaxValue(value: string) {
-        const action = ChangeMaxValueAC(value)
-        dispatch(action)
-
-        // hasAnyErrorsHandler(hasError || +value <= +start.inputValue)
-    }
-
-    function changeStartValue(value: string) {
-        const action = ChangeStartValueAC(value)
-        dispatch(action)
-
-        // hasAnyErrorsHandler(hasError || +value >= +max.inputValue)
-    }
-
-    function incrementButtonHandler() {
-        const action = IncrementButtonIsPressedAC()
-        dispatch(action)
-    }
 
     function setButtonHandler() {
         const action = SetButtonIsPressedAC()
@@ -99,7 +91,6 @@ export const Counter = () => {
                 cp={counterParams}
                 incrementButtonHandler={incrementButtonHandler}
                 // isResetButtonPressedHandler={isResetButtonPressedHandler}
-                turnRed={false}
             />
         </div>
     );

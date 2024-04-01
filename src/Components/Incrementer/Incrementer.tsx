@@ -11,14 +11,12 @@ type IncrementerType = {
     cp: CounterParamsType
     // isResetButtonPressedHandler: () => void
     incrementButtonHandler: () => void
-    turnRed?: boolean
 }
 
 export const Incrementer = ({
                                 cp,
                                 // isResetButtonPressedHandler,
                                 incrementButtonHandler,
-                                turnRed
                             }: IncrementerType) => {
 
     return (
@@ -33,7 +31,7 @@ export const Incrementer = ({
                     <SpanStyled
                         isText={!cp.setButtonDisabled}
                         isErrorText={cp.hasErrorGlobal}
-                        turnRed={turnRed}
+                        turnRed={cp.turnRed}
                     >
                         {cp.setButtonDisabled ?
                             cp.startValue :
