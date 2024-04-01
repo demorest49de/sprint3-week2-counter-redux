@@ -28,7 +28,6 @@ const initialState: CounterParamsType = {
     incButtonDisabled: true,
     resetButtonDisabled: true,
 
-    setState: false,
     inputIsDisabled: false,
     turnRed: false,
     start: {

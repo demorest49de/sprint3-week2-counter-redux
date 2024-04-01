@@ -19,7 +19,6 @@ export type CounterParamsType = {
     incButtonDisabled: boolean
     resetButtonDisabled: boolean
 
-    setState: boolean
     inputIsDisabled: boolean
     turnRed: boolean
 
