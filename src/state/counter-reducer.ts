@@ -12,11 +12,15 @@ export type IncrementButtonIsPressedType =
 export type SetButtonIsPressedType =
     ReturnType<typeof SetButtonIsPressedAC>
 
+export type ResetButtonIsPressedType =
+    ReturnType<typeof ResetButtonIsPressedAC>
+
 type ActionType =
     ChangeMaxValueType
     | ChangeStartValueType
     | IncrementButtonIsPressedType
     | SetButtonIsPressedType
+    | ResetButtonIsPressedType
     ;
 
 
@@ -36,7 +40,6 @@ const initialState: CounterParamsType = {
     max: {
         inputValue: '2',
         hasError: false,
-        focus: true
     },
 }
 
@@ -84,6 +87,16 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             nstate.resetButtonDisabled = false
             return nstate;
         }
+        case 'RESET-BUTTON-PRESSED': {
+            const nstate = {...state}
+            nstate.setButtonDisabled = false
+            nstate.inputIsDisabled = false
+            nstate.max.inputValue = '2'
+            nstate.start.inputValue = '0'
+            nstate.incButtonDisabled = true
+            nstate.resetButtonDisabled = true
+            return nstate;
+        }
         default: {
             return state;
         }
@@ -104,4 +117,8 @@ export const IncrementButtonIsPressedAC = () => {
 
 export const SetButtonIsPressedAC = () => {
     return {type: 'SET-BUTTON-PRESSED'} as const
+}
+
+export const ResetButtonIsPressedAC = () => {
+    return {type: 'RESET-BUTTON-PRESSED'} as const
 }

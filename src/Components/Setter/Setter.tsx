@@ -35,7 +35,7 @@ export const Setter = ({
                             name={'max'}
                             inputValue={cp.max.inputValue}
                             hasError={cp.max.hasError}
-                            focus={cp.max.focus}
+                            focus={true}
                             onChangeMax={changeMaxValue}
                             disabledState={cp.inputIsDisabled}
                         />

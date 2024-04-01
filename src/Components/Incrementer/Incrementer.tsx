@@ -9,13 +9,13 @@ import {CounterParamsType} from "../Counter/Counter";
 
 type IncrementerType = {
     cp: CounterParamsType
-    // isResetButtonPressedHandler: () => void
+    resetButtonHandler: () => void
     incrementButtonHandler: () => void
 }
 
 export const Incrementer = ({
                                 cp,
-                                // isResetButtonPressedHandler,
+                                resetButtonHandler,
                                 incrementButtonHandler,
                             }: IncrementerType) => {
 
@@ -51,7 +51,7 @@ export const Incrementer = ({
                         disabled={cp.incButtonDisabled}/>
                     <Button
                         name={'reset'}
-                        // isResetButtonPressed={isResetButtonPressed}
+                        resetButtonHandler={resetButtonHandler}
                         disabled={cp.resetButtonDisabled}/>
                 </FieldSet>
             </GradientWrapperStyled>

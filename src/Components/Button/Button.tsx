@@ -4,7 +4,7 @@ import {ButtonStyled} from "./ButtonStyled";
 type ButtonType = {
     name: string
     setButtonHandler?: () => void
-    isResetButtonPressed?: () => void
+    resetButtonHandler?: () => void
     incrementButtonHandler?: () => void
     hasAnyInputErrors?: boolean
     disabled?: boolean
@@ -14,7 +14,7 @@ export const Button = ({
                            name,
                            setButtonHandler,
                            incrementButtonHandler,
-                           isResetButtonPressed,
+                           resetButtonHandler,
                            disabled,
                        }: ButtonType) => {
 
@@ -23,8 +23,8 @@ export const Button = ({
             case !!setButtonHandler:
                 setButtonHandler?.();
                 break;
-            case !!isResetButtonPressed:
-                isResetButtonPressed?.();
+            case !!resetButtonHandler:
+                resetButtonHandler?.();
                 break;
             case !!incrementButtonHandler:
                 incrementButtonHandler?.();

@@ -5,7 +5,7 @@ import {Setter} from "../Setter/Setter";
 import {
     ChangeMaxValueAC,
     ChangeStartValueAC,
-    IncrementButtonIsPressedAC,
+    IncrementButtonIsPressedAC, ResetButtonIsPressedAC,
     SetButtonIsPressedAC
 } from "../../state/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,19 +21,13 @@ export type CounterParamsType = {
 
     inputIsDisabled: boolean
 
-    start: StartValueType
-    max: MaxValueType
+    start: InputValueType
+    max: InputValueType
 }
 
-type StartValueType = {
+type InputValueType = {
     inputValue: string
     hasError: boolean
-}
-
-type MaxValueType = {
-    inputValue: string
-    hasError: boolean
-    focus: boolean
 }
 
 export const Counter = () => {
@@ -59,14 +53,10 @@ export const Counter = () => {
         dispatch(action)
     }
 
-    // function isResetButtonPressedHandler(isPressed: boolean) {
-    //     setSetState(false)
-    //     setResetState(true)
-    //     setIncState(true)
-    //     setInputState(false)
-    //     seCounterParams({...counterParams, maxValue: '2', startValue: '0', hasAnyError: false, setIsPressed: false})
-    //     setTurnRed(false)
-    // }
+    function resetButtonHandler() {
+        const action = ResetButtonIsPressedAC()
+        dispatch(action)
+    }
 
     function setButtonHandler() {
         const action = SetButtonIsPressedAC()
@@ -86,7 +76,7 @@ export const Counter = () => {
             <Incrementer
                 cp={counterParams}
                 incrementButtonHandler={incrementButtonHandler}
-                // isResetButtonPressedHandler={isResetButtonPressedHandler}
+                resetButtonHandler={resetButtonHandler}
             />
         </div>
     );
