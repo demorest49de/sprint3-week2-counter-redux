@@ -3,10 +3,10 @@ import s from './Counter.module.css'
 import {Incrementer} from "../Incrementer/Incrementer";
 import {Setter} from "../Setter/Setter";
 import {
-    ChangeMaxValueAC,
-    ChangeStartValueAC,
-    IncrementButtonIsPressedAC, ResetButtonIsPressedAC,
-    SetButtonIsPressedAC
+    SetMaxAC,
+    SetStartAC,
+    IncAC, ResetAC,
+    SetSetAC
 } from "../../state/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
@@ -30,6 +30,13 @@ type InputValueType = {
     hasError: boolean
 }
 
+export enum Status {
+    counter= 'counter',
+    settings = 'settings',
+    error = 'error'}
+
+export type StatusType = Status.counter | Status.settings | Status.error
+
 export const Counter = () => {
 
     const counterParams
@@ -39,27 +46,27 @@ export const Counter = () => {
     console.log(' counterParams: ', counterParams);
 
     function changeMaxValue(value: string) {
-        const action = ChangeMaxValueAC(value)
+        const action = SetMaxAC(value)
         dispatch(action)
     }
 
     function changeStartValue(value: string) {
-        const action = ChangeStartValueAC(value)
+        const action = SetStartAC(value)
         dispatch(action)
     }
 
     function incrementButtonHandler() {
-        const action = IncrementButtonIsPressedAC()
+        const action = IncAC()
         dispatch(action)
     }
 
     function resetButtonHandler() {
-        const action = ResetButtonIsPressedAC()
+        const action = ResetAC()
         dispatch(action)
     }
 
     function setButtonHandler() {
-        const action = SetButtonIsPressedAC()
+        const action = SetSetAC()
         dispatch(action)
     }
 

@@ -1,51 +1,57 @@
-import {CounterParamsType} from "../Components/Counter/Counter";
+import {CounterParamsType, Status, StatusType} from "../components/Counter/Counter";
 
-export type ChangeMaxValueType =
-    ReturnType<typeof ChangeMaxValueAC>
+const INC = 'INC'
+const RESET = 'RESET'
+const SET_MAX_VALUE = 'SET_MAX_VALUE'
+const SET_START_VALUE = 'SET_START_VALUE'
+const SET_SET = 'SET_SET'
+const SET_ERROR = 'SET_ERROR'
+const SET_COUNTER = 'SET_COUNTER'
 
-export type ChangeStartValueType =
-    ReturnType<typeof ChangeStartValueAC>
+export type IncAT =
+    ReturnType<typeof IncAC>
 
-export type IncrementButtonIsPressedType =
-    ReturnType<typeof IncrementButtonIsPressedAC>
+export type ResetAT =
+    ReturnType<typeof ResetAC>
 
-export type SetButtonIsPressedType =
-    ReturnType<typeof SetButtonIsPressedAC>
+export type SetMaxAT =
+    ReturnType<typeof SetMaxAC>
 
-export type ResetButtonIsPressedType =
-    ReturnType<typeof ResetButtonIsPressedAC>
+export type SetStartAT =
+    ReturnType<typeof SetStartAC>
+
+export type SetSetAT =
+    ReturnType<typeof SetSetAC>
+
+export type SetErrorAT =
+    ReturnType<typeof SetErrorAC>
+
+export type SetCounterAT =
+    ReturnType<typeof SetCounterAC>
 
 type ActionType =
-    ChangeMaxValueType
-    | ChangeStartValueType
-    | IncrementButtonIsPressedType
-    | SetButtonIsPressedType
-    | ResetButtonIsPressedType
+    IncAT
+    | ResetAT
+    | SetMaxAT
+    | SetStartAT
+    | SetSetAT
+    | SetErrorAT
+    | SetCounterAT
     ;
 
 
-const initialState: CounterParamsType = {
-
-    hasErrorGlobal: false,
-
-    setButtonDisabled: false,
-    incButtonDisabled: true,
-    resetButtonDisabled: true,
-
-    inputIsDisabled: false,
-    start: {
-        inputValue: '0',
-        hasError: false,
-    },
-    max: {
-        inputValue: '2',
-        hasError: false,
-    },
+const initialState = {
+    count: 0,
+    startValue: 0,
+    maxValue: 2,
+    status: Status.settings as StatusType
 }
 
-export const counterReducer = (state: CounterParamsType = initialState, action: ActionType): CounterParamsType => {
+export type InitialStateType = typeof initialState
+
+export const counterReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
-        case 'CHANGE-MAX-VALUE': {
+        case SET_MAX_VALUE: {
             const nstate = {...state}
             const hasError =
                 (+action.value < 0)
@@ -56,7 +62,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             nstate.start = {...nstate.start, hasError}
             return nstate;
         }
-        case 'CHANGE-START-VALUE': {
+        case SET_START_VALUE: {
             const nstate = {...state}
             const hasError =
                 (+action.value < 0)
@@ -66,7 +72,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             nstate.max = {...nstate.max, hasError}
             return nstate;
         }
-        case 'INCREMENT-BUTTON-PRESSED': {
+        case INC: {
             const nstate = {...state}
 
             const inc = (+nstate.start.inputValue + 1)
@@ -79,7 +85,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
 
             return nstate;
         }
-        case 'SET-BUTTON-PRESSED': {
+        case SET_SET: {
             const nstate = {...state}
             nstate.setButtonDisabled = true
             nstate.inputIsDisabled = true
@@ -87,7 +93,7 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
             nstate.resetButtonDisabled = false
             return nstate;
         }
-        case 'RESET-BUTTON-PRESSED': {
+        case RESET: {
             const nstate = {...state}
             nstate.setButtonDisabled = false
             nstate.inputIsDisabled = false
@@ -103,22 +109,30 @@ export const counterReducer = (state: CounterParamsType = initialState, action: 
     }
 }
 
-export const ChangeMaxValueAC = (value: string) => {
-    return {type: 'CHANGE-MAX-VALUE', value} as const
+export const IncAC = () => {
+    return {type: INC} as const
 }
 
-export const ChangeStartValueAC = (value: string) => {
-    return {type: 'CHANGE-START-VALUE', value} as const
+export const ResetAC = () => {
+    return {type: RESET} as const
 }
 
-export const IncrementButtonIsPressedAC = () => {
-    return {type: 'INCREMENT-BUTTON-PRESSED'} as const
+export const SetMaxAC = (value: string) => {
+    return {type: SET_MAX_VALUE, value} as const
 }
 
-export const SetButtonIsPressedAC = () => {
-    return {type: 'SET-BUTTON-PRESSED'} as const
+export const SetStartAC = (value: string) => {
+    return {type: SET_START_VALUE, value} as const
 }
 
-export const ResetButtonIsPressedAC = () => {
-    return {type: 'RESET-BUTTON-PRESSED'} as const
+export const SetSetAC = () => {
+    return {type: SET_SET} as const
+}
+
+export const SetErrorAC = () => {
+    return {type: RESET} as const
+}
+
+export const SetCounterAC = () => {
+    return {type: RESET} as const
 }
