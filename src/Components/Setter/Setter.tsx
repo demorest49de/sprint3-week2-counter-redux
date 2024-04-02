@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FieldSet} from "../FieldSet/FieldSet";
 import {Input} from '../Input/Input';
 import {Button} from "../Button/Button";
@@ -6,9 +6,10 @@ import {GradientWrapperStyled} from "../GradientWrapper/GradientWrapperStyled";
 import {MainBlockStyled} from "../MainBlock/MainBlockStyled";
 import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
 import {CounterParamsType} from "../Counter/Counter";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
 
 type SetterType = {
-    cp: CounterParamsType
     changeMaxValue: (value: string) => void
     changeStartValue: (value: string) => void
     setButtonHandler: () => void
@@ -17,10 +18,11 @@ type SetterType = {
 export const Setter = ({
                            changeMaxValue,
                            changeStartValue,
-                           cp,
+
     setButtonHandler,
                        }: SetterType) => {
 
+    const cp = useSelector<AppRootStateType, CounterParamsType>(state => state.counter)
         return (
             <MainBlockStyled
                 isSetter={true}

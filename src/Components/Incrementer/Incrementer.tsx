@@ -6,19 +6,19 @@ import {firstGradient, secondGradient} from "../Gradient/GradientTypes";
 import {Button} from "../Button/Button";
 import {SpanStyled} from "./SpanStyled";
 import {CounterParamsType} from "../Counter/Counter";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
 
 type IncrementerType = {
-    cp: CounterParamsType
     resetButtonHandler: () => void
     incrementButtonHandler: () => void
 }
 
 export const Incrementer = ({
-                                cp,
                                 resetButtonHandler,
                                 incrementButtonHandler,
                             }: IncrementerType) => {
-
+    const cp = useSelector<AppRootStateType, CounterParamsType>(state => state.counter)
     return (
         <MainBlockStyled
             isIncrementer={true}

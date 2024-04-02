@@ -69,12 +69,10 @@ export const Counter = () => {
             <Setter
                 changeMaxValue={changeMaxValue}
                 changeStartValue={changeStartValue}
-                cp={counterParams}
                 setButtonHandler={setButtonHandler}
             />
 
             <Incrementer
-                cp={counterParams}
                 incrementButtonHandler={incrementButtonHandler}
                 resetButtonHandler={resetButtonHandler}
             />
@@ -85,3 +83,4 @@ export const Counter = () => {
 //TODO useSelector - минус лишние пропсы
 //TODO - избавиться от лишн состояний (репозиторий)
 //TODO - проверка  на целое число, поставить ограничение  по величине числа
+//TODO - как правильно доставать селектором переменные (репозиторий - 13 - 15 строка)
