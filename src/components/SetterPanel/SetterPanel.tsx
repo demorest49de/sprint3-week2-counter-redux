@@ -26,8 +26,10 @@ export const SetterPanel = () => {
 
     const changeMaxValue = (value: number)=>{
         console.log(' value: ', value);
-        isNaN(value) ? dispatch(SetMaxAC(maxValue)) :
-        value > 99 ? dispatch(SetMaxAC(99)) : dispatch(SetMaxAC(value))
+        if(value > 99)  { return dispatch(SetMaxAC(99))}
+         if(value <= -1) { return  dispatch(SetMaxAC(1))}
+
+        dispatch(SetMaxAC(value))
     }
 
 

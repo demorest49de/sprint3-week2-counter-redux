@@ -25,7 +25,6 @@ export const Input = ({
         const value =result ? result[0] : e.currentTarget.value;
         console.log(' value: ', value);
         callback(+value)
-        // callback(Math.trunc(e.currentTarget.valueAsNumber))
     }
 
     return <InputStyled
@@ -36,6 +35,10 @@ export const Input = ({
                value={inputValue}
                autoFocus={focus}
                onChange={onChangeHandler}
+               onKeyDown={(e)=>{
+                   console.log(' e.key: ', e.key);
+                   e.key ==='ArrowUp' ? callback(inputValue + 1) : callback(inputValue - 1);
+               }}
         />
     </InputStyled>
 }
