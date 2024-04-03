@@ -21,7 +21,7 @@ export const SetterPanel = () => {
 
         useEffect(() => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
-        }, [status, maxValue, startValue, dispatch])
+        }, [status, maxValue, startValue])
 
         const changeMaxValue = (value: number) => {
             console.log(' value: ', value);
