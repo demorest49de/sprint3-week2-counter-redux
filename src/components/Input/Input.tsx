@@ -18,21 +18,24 @@ export const Input = ({
                           callback,
                       }: CustomInputType) => {
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
-        console.log(' e.currentTarget.valueAsNumber: ', e.currentTarget.valueAsNumber);
-        callback(Math.trunc(e.currentTarget.valueAsNumber))
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const regex = /^[0-9]*$/;
+        const evalue = e.currentTarget.value;
+        let result = evalue.toString().match(regex)
+        const value =result ? result[0] : e.currentTarget.value;
+        console.log(' value: ', value);
+        callback(+value)
+        // callback(Math.trunc(e.currentTarget.valueAsNumber))
     }
-
 
     return <InputStyled
         hasError={hasError}
     >
         <label>{name} value:</label>
-        <input type='number'
+        <input type='text'
                value={inputValue}
                autoFocus={focus}
                onChange={onChangeHandler}
-
         />
     </InputStyled>
 }
