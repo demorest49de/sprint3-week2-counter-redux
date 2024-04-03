@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from "react";
 import styled, {css} from "styled-components";
+import {log} from "node:util";
 
 type CustomInputType = {
     name: string
@@ -17,8 +18,10 @@ export const Input = ({
                           callback,
                       }: CustomInputType) => {
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
+        console.log(' e.currentTarget.valueAsNumber: ', e.currentTarget.valueAsNumber);
         callback(Math.trunc(e.currentTarget.valueAsNumber))
+    }
 
 
     return <InputStyled
@@ -26,7 +29,7 @@ export const Input = ({
     >
         <label>{name} value:</label>
         <input type='number'
-               value={inputValue.toFixed()}
+               value={inputValue}
                autoFocus={focus}
                onChange={onChangeHandler}
 

@@ -1,6 +1,6 @@
 
 
-const INC = 'IN//C'
+const INC = 'INC'
 const RESET = 'RESET'
 const SET_MAX_VALUE = 'SET_MAX_VALUE'
 const SET_START_VALUE = 'SET_START_VALUE'

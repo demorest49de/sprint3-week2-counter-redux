@@ -18,15 +18,16 @@ export const SetterPanel = () => {
     const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
     const dispatch = useDispatch()
     console.log(' status: ', status);
+    console.log(' maxValue: ', maxValue);
 
     useEffect(()=>{
         (maxValue <= startValue || startValue < 0 || maxValue <= 0)  && dispatch(SetErrorAC())
     }, [status, maxValue, startValue, dispatch])
 
-    const changeMaxValue = useCallback((value: number)=>{
+    const changeMaxValue = (value: number)=>{
+        console.log(' value: ', value);
         value > 99 ? dispatch(SetMaxAC(99)) : dispatch(SetMaxAC(value))
-
-    }, [dispatch, status])
+    }
 
 
         return (
