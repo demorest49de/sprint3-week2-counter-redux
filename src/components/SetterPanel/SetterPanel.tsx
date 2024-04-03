@@ -1,0 +1,70 @@
+import React, {useCallback, useEffect} from 'react';
+import {FieldSet} from "../FieldSet/FieldSet";
+import {Input} from '../Input/Input';
+import {Button} from "../Button/Button";
+import {GradientWrapperStyled} from "../GradientWrapper/GradientWrapperStyled";
+import {MainBlockStyled} from "../MainBlock/MainBlockStyled";
+import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppStateType} from "../../state/store";
+import {SetErrorAC, SetMaxAC, StatusType} from "../../state/counter-reducer";
+
+
+
+export const SetterPanel = () => {
+
+    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
+    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
+    const dispatch = useDispatch()
+    console.log(' status: ', status);
+
+    useEffect(()=>{
+        (maxValue <= startValue || startValue < 0 || maxValue <= 0)  && dispatch(SetErrorAC())
+    }, [status, maxValue, startValue, dispatch])
+
+    const changeMaxValue = useCallback((value: number)=>{
+        value > 99 ? dispatch(SetMaxAC(99)) : dispatch(SetMaxAC(value))
+
+    }, [dispatch, status])
+
+
+        return (
+            <MainBlockStyled
+                isSetter={true}
+            >
+                <GradientWrapperStyled>
+                    <FieldSet
+                        gradient={firstGradient}
+                        hasToBeMargin={true}
+                        inputFieldSet={false}
+                    >
+                        <Input
+                            name={'max'}
+                            focus={true}
+                            inputValue={maxValue}
+                            hasError={maxValue <= startValue || maxValue <= 0 }
+                            callback={changeMaxValue}
+                        />
+                    {/*    <Input*/}
+                    {/*        name={'start'}*/}
+                    {/*        inputValue={cp.start.inputValue}*/}
+                    {/*        hasError={cp.start.hasError}*/}
+                    {/*        onChangeStart={changeStartValue}*/}
+                    {/*        disabledState={cp.inputIsDisabled}*/}
+                    {/*    />*/}
+                    {/*</FieldSet>*/}
+                    {/*<FieldSet gradient={secondGradient}*/}
+                    {/*          buttonFieldSet={true}*/}
+                    {/*>*/}
+                    {/*    <Button*/}
+                    {/*        name={'set'}*/}
+                    {/*        setButtonHandler={setButtonHandler}*/}
+                    {/*        disabled={cp.hasErrorGlobal || cp.setButtonDisabled}*/}
+                    {/*    />*/}
+                    </FieldSet>
+                </GradientWrapperStyled>
+            </MainBlockStyled>
+        );
+    }
+;

@@ -3,39 +3,33 @@ import styled, {css} from "styled-components";
 
 type CustomInputType = {
     name: string
-    inputValue: string
-    hasError: boolean
     focus?: boolean
-    onChangeStart?: (value: string) => void
-    onChangeMax?: (value: string) => void
-    disabledState: boolean
+    inputValue: number
+    hasError: boolean
+    callback: (value: number) => void
 }
 
 export const Input = ({
                           name,
+                          focus,
                           inputValue,
                           hasError,
-                          focus,
-                          onChangeStart,
-                          onChangeMax,
-                          disabledState
+                          callback,
                       }: CustomInputType) => {
 
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        const handler =
-            onChangeMax ? onChangeMax : onChangeStart
-        handler?.(event.currentTarget.value)
-    }
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
+        callback(Math.trunc(e.currentTarget.valueAsNumber))
+
 
     return <InputStyled
         hasError={hasError}
     >
         <label>{name} value:</label>
-        <input type={'number'}
-               value={inputValue}
+        <input type='number'
+               value={inputValue.toFixed()}
                autoFocus={focus}
                onChange={onChangeHandler}
-               disabled={disabledState}
+
         />
     </InputStyled>
 }

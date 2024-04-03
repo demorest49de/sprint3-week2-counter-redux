@@ -1,3 +1,10 @@
+.counterApp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+}
+
 .counter {
   width: 80%;
   height: fit-content;
