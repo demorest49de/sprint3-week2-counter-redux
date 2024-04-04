@@ -14,7 +14,7 @@ function CounterApp() {
 
                 <SetterPanel/>
 
-             {/*   <ScorePanel/>*/}
+                <ScorePanel/>
             </div>
         </div>
     );

@@ -3,20 +3,20 @@ import {ButtonStyled} from "./ButtonStyled";
 
 type ButtonType = {
     name: string
-    setButtonHandler: () => void
+    onClickHandler: () => void
     disabled: boolean
 }
 
 export const Button = ({
                            name,
-                           setButtonHandler,
+                           onClickHandler,
                            disabled,
                        }: ButtonType) => {
 
     return (
         <ButtonStyled
             disabled={disabled}
-            onClick={setButtonHandler}
+            onClick={onClickHandler}
         >
             {name}
         </ButtonStyled>

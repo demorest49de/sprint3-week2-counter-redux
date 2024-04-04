@@ -86,7 +86,7 @@ export const SetterPanel = () => {
                     >
                         <Button
                             name={'set'}
-                            setButtonHandler={setButtonHandler}
+                            onClickHandler={setButtonHandler}
                             disabled={status === Status.error}
                         />
                     </FieldSet>
