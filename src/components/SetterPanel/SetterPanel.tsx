@@ -28,7 +28,7 @@ export const SetterPanel = () => {
 
         useEffect(() => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
-        }, [status, maxValue, startValue])
+        }, [status, maxValue, startValue, dispatch])
 
         const setHelper = (value: number, cb: (newValue: number) => ({ type: string, newValue: number })) => {
             console.log(' value: ', value);
@@ -38,23 +38,23 @@ export const SetterPanel = () => {
             if (value <= -99) {
                 return dispatch(cb(1))
             }
-            if(status === Status.counter) dispatch(SetResetAC(0))
+            if (status === Status.counter) dispatch(SetResetAC(0))
             dispatch(SetSetAC())
             dispatch(cb(value))
         }
 
 
-        const changeMaxValue = (value: number) => {
+        const changeMaxValue = useCallback((value: number) => {
             setHelper(value, SetMaxAC)
-        }
+        }, [maxValue, dispatch])
 
-        const changeStartValue = (value: number) => {
+        const changeStartValue = useCallback((value: number) => {
             setHelper(value, SetStartAC)
-        }
+        }, [startValue, dispatch])
 
-        function setButtonHandler() {
+        const setButtonHandler = useCallback(() => {
             dispatch(SetCounterAC(startValue))
-        }
+        },[dispatch, startValue])
 
 
         return (
@@ -87,7 +87,7 @@ export const SetterPanel = () => {
                         <Button
                             name={'set'}
                             onClickHandler={setButtonHandler}
-                            disabled={status === Status.error  || status !== Status.settings }
+                            disabled={status === Status.error || status !== Status.settings}
                         />
                     </FieldSet>
                 </GradientWrapperStyled>
@@ -95,3 +95,5 @@ export const SetterPanel = () => {
         );
     }
 ;
+
+//TODO dispatch?
