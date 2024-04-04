@@ -7,7 +7,15 @@ import {MainBlockStyled} from "../MainBlock/MainBlockStyled";
 import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from "../../state/store";
-import {SetErrorAC, SetMaxAC, SetStartAC, Status, StatusType} from "../../state/counter-reducer";
+import {
+    SetCounterAC,
+    SetErrorAC,
+    SetMaxAC,
+    SetSetAC,
+    SetStartAC,
+    Status,
+    StatusType
+} from "../../state/counter-reducer";
 
 
 export const SetterPanel = () => {
@@ -23,7 +31,7 @@ export const SetterPanel = () => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
         }, [status, maxValue, startValue])
 
-        const setHelper = (value: number, cb: (newValue: number) => ({type: string, newValue: number} )) => {
+        const setHelper = (value: number, cb: (newValue: number) => ({ type: string, newValue: number })) => {
             console.log(' value: ', value);
             if (value > 99) {
                 return dispatch(cb(99))
@@ -32,7 +40,8 @@ export const SetterPanel = () => {
                 return dispatch(cb(1))
             }
 
-            dispatch(SetMaxAC(value))
+            dispatch(SetSetAC())
+            dispatch(cb(value))
         }
 
 
@@ -41,19 +50,11 @@ export const SetterPanel = () => {
         }
 
         const changeStartValue = (value: number) => {
-            // console.log(' value: ', value);
-            // if (value > 99) {
-            //     return dispatch(SetMaxAC(99))
-            // }
-            // if (value <= -10) {
-            //     return dispatch(SetMaxAC(1))
-            // }
-            //
-            dispatch(SetStartAC(value))
+            setHelper(value, SetStartAC)
         }
-        
+
         function setButtonHandler() {
-            
+            dispatch(SetCounterAC())
         }
 
 

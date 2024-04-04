@@ -17,7 +17,7 @@ export const ScorePanel = () => {
     const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
     const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
     const dispatch = useDispatch()
-
+    console.log(' status: ', status);
     return (
         <MainBlockStyled
             isIncrementer={true}
@@ -28,7 +28,7 @@ export const ScorePanel = () => {
                           hasToBeMargin={true}
                 >
                     <SpanStyled
-                        isNumber={status === Status.error}
+                        isNumber={status === Status.counter}
                         isErrorText={status === Status.error}
                         turnRed={startValue === maxValue}
                     >

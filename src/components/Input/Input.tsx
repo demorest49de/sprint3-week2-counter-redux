@@ -37,7 +37,8 @@ export const Input = ({
                onChange={onChangeHandler}
                onKeyDown={(e)=>{
                    console.log(' e.key: ', e.key);
-                   e.key ==='ArrowUp' ? callback(inputValue + 1) : callback(inputValue - 1);
+                   if(e.key ==='ArrowUp') callback(inputValue + 1)
+                   if(e.key ==='ArrowDown') callback(inputValue - 1);
                }}
         />
     </InputStyled>
