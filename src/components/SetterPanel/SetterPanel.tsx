@@ -30,21 +30,30 @@ export const SetterPanel = () => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
         }, [status, maxValue, startValue, dispatch])
 
-        const setHelper = (value: number, cb: (newValue: number) => ({ type: string, newValue: number })) => {
-            console.log(' value: ', value);
+        const setHelper = (
+            value: number,
+            cb: (newValue: number) =>
+                ({ type: string, newValue: number }),
+            name = 'max'
+        ) => {
+
             if (value > 99) {
                 return dispatch(cb(99))
             }
             if (value <= -99) {
                 return dispatch(cb(1))
             }
-            if (status === Status.counter) dispatch(SetResetAC(0))
+            if (status === Status.counter) {
+            }
+
+            dispatch(SetResetAC(0))
             dispatch(SetSetAC())
             dispatch(cb(value))
         }
 
 
         const changeMaxValue = useCallback((value: number) => {
+            console.log(' changeMaxValue: ');
             setHelper(value, SetMaxAC)
         }, [maxValue, dispatch])
 
@@ -54,7 +63,7 @@ export const SetterPanel = () => {
 
         const setButtonHandler = useCallback(() => {
             dispatch(SetCounterAC(startValue))
-        },[dispatch, startValue])
+        }, [dispatch, startValue])
 
 
         return (

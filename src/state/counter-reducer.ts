@@ -28,7 +28,7 @@ export type StatusType = Status.counter | Status.settings | Status.error
 const initialState = {
     count: 0,
     startValue: 0,
-    maxValue: 2,
+    maxValue: 5,
     status: Status.settings as StatusType
 }
 
@@ -40,7 +40,7 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             return {...state, count: state.count + 1}
         }
         case RESET: {
-            return {...state, startValue: action.startValue, count: action.startValue}
+            return {...state, count: action.startValue}
         }
         case SET_MAX_VALUE: {
             return {...state, maxValue: action.newValue}

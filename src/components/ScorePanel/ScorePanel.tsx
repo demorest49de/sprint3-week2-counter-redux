@@ -18,7 +18,7 @@ export const ScorePanel = () => {
     const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
     const dispatch = useDispatch()
     console.log(' status: ', status);
-
+    console.log(' count , maxValue, startValue: ', count, maxValue, startValue);
     const onClickInc = () => {
         if (count < maxValue) {
             dispatch(SetIncAC())

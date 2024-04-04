@@ -1,6 +1,5 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, memo} from "react";
 import styled, {css} from "styled-components";
-import {log} from "node:util";
 
 type CustomInputType = {
     name: string
@@ -10,14 +9,13 @@ type CustomInputType = {
     callback: (value: number) => void
 }
 
-export const Input = ({
+export const Input = memo(({
                           name,
                           focus,
                           inputValue,
                           hasError,
                           callback,
                       }: CustomInputType) => {
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9]*$/;
         const evalue = e.currentTarget.value;
@@ -36,13 +34,13 @@ export const Input = ({
                autoFocus={focus}
                onChange={onChangeHandler}
                onKeyDown={(e)=>{
-                   console.log(' e.key: ', e.key);
+
                    if(e.key ==='ArrowUp') callback(inputValue + 1)
                    if(e.key ==='ArrowDown') callback(inputValue - 1);
                }}
         />
     </InputStyled>
-}
+})
 
 type CustomInputStyledType = {
     hasError: boolean
