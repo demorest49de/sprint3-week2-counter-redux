@@ -30,7 +30,7 @@ export const ScorePanel = () => {
                     <SpanStyled
                         isNumber={status === Status.counter}
                         isErrorText={status === Status.error}
-                        turnRed={startValue === maxValue}
+                        turnRed={status !== Status.error && startValue === maxValue}
                     >
                         {status === Status.counter ?
                             startValue :

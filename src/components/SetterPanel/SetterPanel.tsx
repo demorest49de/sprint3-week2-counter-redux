@@ -88,7 +88,7 @@ export const SetterPanel = () => {
                         <Button
                             name={'set'}
                             onClickHandler={setButtonHandler}
-                            disabled={status === Status.error}
+                            disabled={status === Status.error  || status !== Status.settings }
                         />
                     </FieldSet>
                 </GradientWrapperStyled>
