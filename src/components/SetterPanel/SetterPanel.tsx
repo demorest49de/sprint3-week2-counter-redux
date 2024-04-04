@@ -19,7 +19,7 @@ import {
 
 
 export const SetterPanel = () => {
-
+        const count = useSelector<AppStateType, number>(state => state.counter.count)
         const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
         const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
         const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
@@ -61,7 +61,7 @@ export const SetterPanel = () => {
 
         const setButtonHandler = useCallback(() => {
             dispatch(SetCounterAC())
-        }, [])
+        }, [dispatch])
 
 
         return (
