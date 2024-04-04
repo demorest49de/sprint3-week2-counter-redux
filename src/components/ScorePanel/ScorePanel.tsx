@@ -27,7 +27,7 @@ export const ScorePanel = () => {
     }
 
     const onClickReset = () => {
-        dispatch(SetResetAC(startValue))
+        dispatch(SetResetAC())
     }
 
     return (

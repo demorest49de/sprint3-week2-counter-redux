@@ -44,7 +44,7 @@ export const SetterPanel = () => {
                 return dispatch(cb(1))
             }
 
-            dispatch(SetResetAC(0))
+            dispatch(SetResetAC())
             dispatch(SetSetAC())
             dispatch(cb(value))
         }

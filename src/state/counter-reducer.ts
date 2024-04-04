@@ -65,7 +65,7 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
 }
 
 export const SetIncAC = () => ({type: INC} as const)
-export const SetResetAC = (startValue: number) => ({type: RESET, startValue} as const)
+export const SetResetAC = () => ({type: RESET} as const)
 export const SetMaxAC = (newValue: number) => ({type: SET_MAX_VALUE, newValue} as const)
 export const SetStartAC = (newValue: number) => ({type: SET_START_VALUE, newValue} as const)
 export const SetSetAC = () => ({type: SET_SET} as const)
