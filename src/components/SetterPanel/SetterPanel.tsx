@@ -105,4 +105,4 @@ export const SetterPanel = () => {
     }
 ;
 
-//TODO dispatch?
+//TODO dispatch нужно добавлять в хуки если да то зачем?
