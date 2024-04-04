@@ -7,7 +7,7 @@ import {Button} from "../Button/Button";
 import {SpanStyled} from "./SpanStyled";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../state/store";
-import {SetCounterAC, SetStartAC, Status, StatusType} from "../../state/counter-reducer";
+import {SetCounterAC, SetIncAC, SetResetAC, SetStartAC, Status, StatusType} from "../../state/counter-reducer";
 
 
 export const ScorePanel = () => {
@@ -18,6 +18,19 @@ export const ScorePanel = () => {
     const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
     const dispatch = useDispatch()
     console.log(' status: ', status);
+
+    const onClickInc = () => {
+        if (count < maxValue) {
+            dispatch(SetIncAC())
+        } else {
+
+        }
+    }
+
+    const onClickReset = () => {
+        dispatch(SetResetAC(startValue))
+    }
+
     return (
         <MainBlockStyled
             isIncrementer={true}
@@ -30,10 +43,10 @@ export const ScorePanel = () => {
                     <SpanStyled
                         isNumber={status === Status.counter}
                         isErrorText={status === Status.error}
-                        turnRed={status !== Status.error && startValue === maxValue}
+                        turnRed={status !== Status.error && count === maxValue}
                     >
                         {status === Status.counter ?
-                            startValue :
+                            count :
                             (status === Status.error ?
                                 'Incorrect value!' :
                                 'enter values and press \'set\'')
@@ -45,12 +58,15 @@ export const ScorePanel = () => {
                 >
                     <Button
                         name={'inc'}
-                        onClickHandler={()=>{dispatch(SetCounterAC())}}
-                        disabled={status === Status.error}/>
+                        onClickHandler={onClickInc}
+                        disabled={status === Status.error
+                            || status === Status.settings
+                            || count === maxValue
+                    }/>
                     <Button
                         name={'reset'}
-                        onClickHandler={()=>{}}
-                        disabled={status === Status.error}/>
+                        onClickHandler={onClickReset}
+                        disabled={status === Status.error || status === Status.settings}/>
                 </FieldSet>
             </GradientWrapperStyled>
         </MainBlockStyled>

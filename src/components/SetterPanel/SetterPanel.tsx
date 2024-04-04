@@ -10,7 +10,7 @@ import {AppStateType} from "../../state/store";
 import {
     SetCounterAC,
     SetErrorAC,
-    SetMaxAC,
+    SetMaxAC, SetResetAC,
     SetSetAC,
     SetStartAC,
     Status,
@@ -24,8 +24,7 @@ export const SetterPanel = () => {
         const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
         const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
         const dispatch = useDispatch()
-        console.log(' status: ', status);
-        console.log(' maxValue: ', maxValue);
+
 
         useEffect(() => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
@@ -39,7 +38,7 @@ export const SetterPanel = () => {
             if (value <= -99) {
                 return dispatch(cb(1))
             }
-
+            if(status === Status.counter) dispatch(SetResetAC(0))
             dispatch(SetSetAC())
             dispatch(cb(value))
         }
@@ -54,7 +53,7 @@ export const SetterPanel = () => {
         }
 
         function setButtonHandler() {
-            dispatch(SetCounterAC())
+            dispatch(SetCounterAC(startValue))
         }
 
 
