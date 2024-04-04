@@ -3,40 +3,20 @@ import {ButtonStyled} from "./ButtonStyled";
 
 type ButtonType = {
     name: string
-    setButtonHandler?: () => void
-    resetButtonHandler?: () => void
-    incrementButtonHandler?: () => void
-    hasAnyInputErrors?: boolean
-    disabled?: boolean
+    setButtonHandler: () => void
+    disabled: boolean
 }
 
 export const Button = ({
                            name,
                            setButtonHandler,
-                           incrementButtonHandler,
-                           resetButtonHandler,
                            disabled,
                        }: ButtonType) => {
-
-    function onClickHandler() {
-        switch (true) {
-            case !!setButtonHandler:
-                setButtonHandler?.();
-                break;
-            case !!resetButtonHandler:
-                resetButtonHandler?.();
-                break;
-            case !!incrementButtonHandler:
-                incrementButtonHandler?.();
-                break;
-        }
-
-    }
 
     return (
         <ButtonStyled
             disabled={disabled}
-            onClick={onClickHandler}
+            onClick={setButtonHandler}
         >
             {name}
         </ButtonStyled>

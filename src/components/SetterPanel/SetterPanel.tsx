@@ -7,7 +7,7 @@ import {MainBlockStyled} from "../MainBlock/MainBlockStyled";
 import {firstGradient, secondGradient} from '../Gradient/GradientTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from "../../state/store";
-import {SetErrorAC, SetMaxAC, StatusType} from "../../state/counter-reducer";
+import {SetErrorAC, SetMaxAC, SetStartAC, Status, StatusType} from "../../state/counter-reducer";
 
 
 export const SetterPanel = () => {
@@ -23,16 +23,37 @@ export const SetterPanel = () => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
         }, [status, maxValue, startValue])
 
-        const changeMaxValue = (value: number) => {
+        const setHelper = (value: number, cb: (newValue: number) => ({type: string, newValue: number} )) => {
             console.log(' value: ', value);
             if (value > 99) {
-                return dispatch(SetMaxAC(99))
+                return dispatch(cb(99))
             }
-            if (value <= -10) {
-                return dispatch(SetMaxAC(1))
+            if (value <= -99) {
+                return dispatch(cb(1))
             }
 
             dispatch(SetMaxAC(value))
+        }
+
+
+        const changeMaxValue = (value: number) => {
+            setHelper(value, SetMaxAC)
+        }
+
+        const changeStartValue = (value: number) => {
+            // console.log(' value: ', value);
+            // if (value > 99) {
+            //     return dispatch(SetMaxAC(99))
+            // }
+            // if (value <= -10) {
+            //     return dispatch(SetMaxAC(1))
+            // }
+            //
+            dispatch(SetStartAC(value))
+        }
+        
+        function setButtonHandler() {
+            
         }
 
 
@@ -50,25 +71,24 @@ export const SetterPanel = () => {
                             name={'max'}
                             focus={true}
                             inputValue={maxValue}
-                            hasError={maxValue <= startValue || maxValue <= 0}
+                            hasError={status === Status.error}
                             callback={changeMaxValue}
                         />
-                        {/*    <Input*/}
-                        {/*        name={'start'}*/}
-                        {/*        inputValue={cp.start.inputValue}*/}
-                        {/*        hasError={cp.start.hasError}*/}
-                        {/*        onChangeStart={changeStartValue}*/}
-                        {/*        disabledState={cp.inputIsDisabled}*/}
-                        {/*    />*/}
-                        {/*</FieldSet>*/}
-                        {/*<FieldSet gradient={secondGradient}*/}
-                        {/*          buttonFieldSet={true}*/}
-                        {/*>*/}
-                        {/*    <Button*/}
-                        {/*        name={'set'}*/}
-                        {/*        setButtonHandler={setButtonHandler}*/}
-                        {/*        disabled={cp.hasErrorGlobal || cp.setButtonDisabled}*/}
-                        {/*    />*/}
+                        <Input
+                            name={'start'}
+                            inputValue={startValue}
+                            hasError={status === Status.error}
+                            callback={changeStartValue}
+                        />
+                    </FieldSet>
+                    <FieldSet gradient={secondGradient}
+                              buttonFieldSet={true}
+                    >
+                        <Button
+                            name={'set'}
+                            setButtonHandler={setButtonHandler}
+                            disabled={status === Status.error}
+                        />
                     </FieldSet>
                 </GradientWrapperStyled>
             </MainBlockStyled>
