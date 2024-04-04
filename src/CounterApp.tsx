@@ -11,7 +11,6 @@ function CounterApp() {
     return (
         <div className={s.counterApp}>
             <div className={s.counter}>
-
                 <SetterPanel/>
 
                 <ScorePanel/>
