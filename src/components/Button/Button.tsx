@@ -12,6 +12,7 @@ export const Button = memo(({
                                 onClickHandler,
                                 disabled,
                             }: ButtonType) => {
+    console.log(11111);
     return (
         <ButtonStyled
             disabled={disabled}

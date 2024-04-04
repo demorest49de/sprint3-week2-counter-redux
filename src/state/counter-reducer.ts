@@ -40,7 +40,7 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             return {...state, count: state.count + 1}
         }
         case RESET: {
-            return {...state, count: action.startValue}
+            return {...state, count: state.startValue}
         }
         case SET_MAX_VALUE: {
             return {...state, maxValue: action.newValue}
@@ -49,13 +49,14 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             return {...state, startValue: action.newValue}
         }
         case SET_SET: {
+
             return {...state, status: Status.settings}
         }
         case SET_ERROR: {
             return {...state, status: Status.error}
         }
         case SET_COUNTER: {
-            return {...state, status: Status.counter, count: action.startValue}
+            return {...state, status: Status.counter, count: state.startValue}
         }
         default: {
             return state;
@@ -69,4 +70,4 @@ export const SetMaxAC = (newValue: number) => ({type: SET_MAX_VALUE, newValue} a
 export const SetStartAC = (newValue: number) => ({type: SET_START_VALUE, newValue} as const)
 export const SetSetAC = () => ({type: SET_SET} as const)
 export const SetErrorAC = () => ({type: SET_ERROR} as const)
-export const SetCounterAC = (startValue: number) => ({type: SET_COUNTER, startValue} as const)
+export const SetCounterAC = () => ({type: SET_COUNTER} as const)

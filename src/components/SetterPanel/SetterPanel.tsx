@@ -60,8 +60,8 @@ export const SetterPanel = () => {
         }, [startValue, dispatch])
 
         const setButtonHandler = useCallback(() => {
-            dispatch(SetCounterAC(startValue))
-        }, [dispatch, startValue])
+            dispatch(SetCounterAC())
+        }, [])
 
 
         return (
