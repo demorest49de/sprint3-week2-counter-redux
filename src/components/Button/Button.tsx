@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {ButtonStyled} from "./ButtonStyled";
 
 type ButtonType = {
@@ -7,12 +7,12 @@ type ButtonType = {
     disabled: boolean
 }
 
-export const Button = ({
-                           name,
-                           onClickHandler,
-                           disabled,
-                       }: ButtonType) => {
-
+export const Button = memo(({
+                                name,
+                                onClickHandler,
+                                disabled,
+                            }: ButtonType) => {
+    console.log(' button render: ', disabled);
     return (
         <ButtonStyled
             disabled={disabled}
@@ -21,4 +21,4 @@ export const Button = ({
             {name}
         </ButtonStyled>
     );
-};
+})

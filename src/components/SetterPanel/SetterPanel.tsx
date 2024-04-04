@@ -24,7 +24,7 @@ export const SetterPanel = () => {
         const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
         const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
         const dispatch = useDispatch()
-
+        console.log(' status: ', status);
 
         useEffect(() => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
@@ -42,8 +42,6 @@ export const SetterPanel = () => {
             }
             if (value <= -99) {
                 return dispatch(cb(1))
-            }
-            if (status === Status.counter) {
             }
 
             dispatch(SetResetAC(0))
@@ -96,7 +94,9 @@ export const SetterPanel = () => {
                         <Button
                             name={'set'}
                             onClickHandler={setButtonHandler}
-                            disabled={status === Status.error || status !== Status.settings}
+                            disabled={status === Status.error
+                                || status === Status.counter
+                            }
                         />
                     </FieldSet>
                 </GradientWrapperStyled>
