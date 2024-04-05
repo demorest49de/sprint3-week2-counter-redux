@@ -14,21 +14,19 @@ export const ScorePanel = () => {
 
     const count = useSelector<AppStateType, number>(state => state.counter.count)
     const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
     const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
     const dispatch = useDispatch()
-    console.log(' status: ', status);
-    console.log(' count , maxValue, startValue: ', count, maxValue, startValue);
 
-    const onClickInc = () => {
+
+    const onClickInc = useCallback(() => {
         if (count < maxValue) {
             dispatch(SetIncAC())
         }
-    }
+    }, [dispatch, SetIncAC])
 
-    const onClickReset = () => {
+    const onClickReset = useCallback(() => {
         dispatch(SetResetAC())
-    }
+    },[dispatch, SetResetAC])
 
     return (
         <MainBlockStyled
@@ -61,7 +59,7 @@ export const ScorePanel = () => {
                         disabled={status === Status.error
                             || status === Status.settings
                             || count === maxValue
-                    }/>
+                        }/>
                     <Button
                         name={'reset'}
                         onClickHandler={onClickReset}

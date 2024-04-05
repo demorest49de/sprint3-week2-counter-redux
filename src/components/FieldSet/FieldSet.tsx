@@ -13,7 +13,7 @@ export type ValuesType = {
     children?: JSX.Element | JSX.Element[]
 }
 
-export const FieldSet = ({
+export const FieldSet =({
                              gradient,
                              hasToBeMargin,
                              children,

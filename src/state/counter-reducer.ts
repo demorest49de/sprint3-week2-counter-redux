@@ -56,7 +56,7 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             return {...state, status: Status.error}
         }
         case SET_COUNTER: {
-            return {...state, status: Status.counter, count: state.startValue}
+            return {...state, status: Status.counter}
         }
         default: {
             return state;

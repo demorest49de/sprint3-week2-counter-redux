@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {FieldSet} from "../FieldSet/FieldSet";
 import {Input} from '../Input/Input';
 import {Button} from "../Button/Button";
@@ -19,24 +19,22 @@ import {
 
 
 export const SetterPanel = () => {
-        const count = useSelector<AppStateType, number>(state => state.counter.count)
+
         const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
         const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
         const status = useSelector<AppStateType, StatusType>(state => state.counter.status)
         const dispatch = useDispatch()
-        console.log(' status: ', status);
+
 
         useEffect(() => {
             (maxValue <= startValue || startValue < 0 || maxValue <= 0) && dispatch(SetErrorAC())
         }, [status, maxValue, startValue, dispatch])
 
-        const setHelper = (
+        const setHelper = useCallback( (
             value: number,
             cb: (newValue: number) =>
-                ({ type: string, newValue: number }),
-            name = 'max'
-        ) => {
-
+                ({ type: string,
+                    newValue: number })) => {
             if (value > 99) {
                 return dispatch(cb(99))
             }
@@ -47,20 +45,20 @@ export const SetterPanel = () => {
             dispatch(SetResetAC())
             dispatch(SetSetAC())
             dispatch(cb(value))
-        }
+        },[dispatch])
 
 
         const changeMaxValue = useCallback((value: number) => {
-            console.log(' changeMaxValue: ');
             setHelper(value, SetMaxAC)
-        }, [maxValue, dispatch])
+        }, [setHelper])
 
         const changeStartValue = useCallback((value: number) => {
             setHelper(value, SetStartAC)
-        }, [startValue, dispatch])
+        }, [setHelper])
 
         const setButtonHandler = useCallback(() => {
             dispatch(SetCounterAC())
+            dispatch(SetResetAC())
         }, [dispatch])
 
 
@@ -98,6 +96,7 @@ export const SetterPanel = () => {
                                 || status === Status.counter
                             }
                         />
+
                     </FieldSet>
                 </GradientWrapperStyled>
             </MainBlockStyled>

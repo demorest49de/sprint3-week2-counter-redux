@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import {memo} from "react";
 
 type MainBlockStyledType = {
     isSetter?: boolean
@@ -6,7 +7,7 @@ type MainBlockStyledType = {
 }
 
 export const MainBlockStyled
-    = styled.div<MainBlockStyledType>`
+    = memo(styled.div<MainBlockStyledType>`
   width: 400px;
   height: fit-content;
   border-radius: 15px;
@@ -19,4 +20,4 @@ export const MainBlockStyled
     background: linear-gradient(to right, greenyellow, blueviolet, dodgerblue);
   `
   }
-`
+`)
